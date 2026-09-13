@@ -12,19 +12,19 @@ The model predicts the presence of **14 thoracic findings** independently
 ### Data & Preprocessing
 
 * Used a patient-level subset of approximately **20,000 chest X-rays**.
-* Split patients into **70% training, 15% validation, and 15% test sets** to prevent patient-level data leakage.
-* Resized images to **244 × 244** and applied ResNet50 preprocessing.
+* Split patients into 70% training, 15% validation, and 15% test sets to prevent patient-level data leakage.
+* Resized images to 244 × 244 and applied ResNet50 preprocessing.
 * Used Hugging Face streaming to load the dataset without downloading the full dataset locally.
 
 ### Model
 
-* **ResNet50** pretrained on ImageNet used as a **frozen feature extractor**.
+* ResNet50 pretrained on ImageNet used as a frozen feature extractor.
 * Added Global Average Pooling followed by a **15-output sigmoid classification layer**.
-* Used **weighted binary cross-entropy** to address severe class imbalance.
+* Used weighted binary cross-entropy to address severe class imbalance.
 
 ### Evaluation
 
-* Evaluated using **multi-label ROC-AUC**.
+* Evaluated using multi-label ROC-AUC**.
 * Achieved a **0.712 test AUC** on the selected test subset.
 * Used validation AUC for model checkpointing and selected the best-performing model.
 
